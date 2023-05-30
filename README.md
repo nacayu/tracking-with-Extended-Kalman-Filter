@@ -74,7 +74,8 @@ to be tracked, and then apply the Extended Kalman Filter to track the objects ba
    * `cd /path/to/build`
    * `./ExtendedKF  ../data/obj_pose-laser-radar-synthetic-input.txt ../output/output.txt`
    * `./ExtendedKF  ../data/sample-laser-radar-measurement-data-1.txt ../output/output.txt`
-
+5. Visualize your output results
+   * see in [visualization](output/visualization.ipynb) and run the jupyter kernal to visualize your results (figures mainly show the relationship of radar, lidar, all sensors measurement and corresponding ground truth)
 ## System details
 
 ### 1. How does LIDAR measurement look like
