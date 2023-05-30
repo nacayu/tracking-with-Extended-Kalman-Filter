@@ -99,10 +99,6 @@ you have to consider z axis as well. Also in application like airplane and drone
 * LIDAR most affected by dirt and small debris.
 
 
-One comparison Figure from _**another aspect**_.
-
-![][image6]
-
 
 ### 3. How does the Extended Kalman Filter Work
 
