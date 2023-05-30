@@ -1,26 +1,24 @@
 # **Object Tracking with Extended Kalman Filter**
 
-### Objective
-Utilize sensor data from both LIDAR and RADAR measurements for object (e.g. pedestrian, vehicles, or other moving objects) 
-tracking with the Extended Kalman Filter.
+### 功能
+基于UKF完成毫米波雷达和激光雷达**后融合**的**单目标**跟踪实战
 
-### **Demo: Object tracking with both LIDAR and RADAR measurements**
+### 假设
+- 目标：CV模型（Constant Velocity）恒定速度模型，不考虑加速度
+- 激光雷达测量值：x, y
+- 毫米波雷达测量值：角度，径向距离，径向速度
+- 已经得到object，不需要在进行聚类(DBSCAN, KMeans)
+- 单目标跟踪：不需要匹配算法(匈牙利算法)
+
+### **Demo: 使用激光雷达和雷达测量的物体跟踪**
 
 [![gif_demo1][both_gif]](https://www.youtube.com/watch?v=XswKMtQBTCo)
 
-In this demo, the blue car is the object to be tracked, but the tracked object can be any types, e.g. 
-pedestrian, vehicles, or other moving objects. We continuously got both LIDAR (**red circle**) and RADAR (**blue circle**) 
-measurements of the car's location in the defined coordinate, but there might be noise and errors 
-in the data. Also, we need to find a way to fuse the two types of sensor measurements to estimate 
-the proper location of the tracked object.
+在这个演示中，蓝色汽车是被跟踪的对象，但被跟踪的对象可以是任何类型，例如行人、车辆或其他移动物体。我们连续得到了激光雷达（**红圈**）和雷达（**蓝圈**）的测量结果。测量汽车在定义的坐标中的位置，但数据中可能存在噪声和误差。我们需要找到一种方法来融合这两种类型的传感器测量数据，以估计被跟踪物体的正确位置。
 
-Therefore, we use Extended Kalman Filter to compute the estimated location (**green triangle**) of the blue car. 
-The estimated trajectory (**green triangle**) is compared with the ground true trajectory of the blue car, and 
-the error is displayed in RMSE format in real time.
+因此，我们使用扩展卡尔曼滤波来计算蓝色汽车的估计位置（**绿色三角形**）。估计的轨迹（**绿色三角形**）与地面上蓝色汽车的真实轨迹进行比较，并将误差以RMSE显示。误差以RMSE格式实时显示。
 
-In autonomous driving case, the self-driving cars obtian both Lidar and radar sensors measurements of objects
-to be tracked, and then apply the Extended Kalman Filter to track the objects based on the two types
- of sensor data.
+在实际场景，自动驾驶汽车同时接受激光雷达和雷达传感器对物体的测量，然后将这些测量结果应用于扩展卡尔曼滤波，根据这两种类型的传感器数据来跟踪物体。
  
 
 ---
@@ -82,10 +80,7 @@ to be tracked, and then apply the Extended Kalman Filter to track the objects ba
 
 ![][image4]
 
-The LIDAR will produce 3D measurement px,py,pz. But for the case of driving on the road, we could simplify the pose of 
-the tracked object as: px,py,and one rotation. In other words, we could only use px and px to indicate the position of 
-the object, and one rotation to indicate the orientation of the object. But in real world where you have very steep road, 
-you have to consider z axis as well. Also in application like airplane and drone, you definitely want to consider pz as well.
+激光雷达将产生三维测量值px,py,pz。但对于在道路上行驶的情况，我们可以将跟踪对象的姿势简化为追踪对象的姿势简化为：px,py,和一个角度。换句话说，我们可以只用px和px来表示物体的位置，以及角度来表示物体的方向。
 
 
 
@@ -93,11 +88,6 @@ you have to consider z axis as well. Also in application like airplane and drone
 
 ![][image5]
 
-
-**_Note_**:
-
-* LIDAR wavelength in infrared; RADAR wavelength in mm. 
-* LIDAR most affected by dirt and small debris.
 
 
 
@@ -145,7 +135,7 @@ you have to consider z axis as well. Also in application like airplane and drone
 2. Prediction
 3. Update
 
-A **standard Kalman filter** can only handle linear equations. Both the **Extended Kalman Filter** (EKF) and the **Unscented Kalman Filter** (UKF will be disuccsed in the next project) allow you to use non-linear equations; the difference between EKF and UKF is how they handle non-linear equations: Extended Kalman Filter uses the Jacobian matrix to linearize non-linear functions; Unscented Kalman Filter, on the other hand, does not need to linearize non-linear functions, insteadly, the unscented Kalman filter takes representative points from a Gaussian distribution. 
+一个**标准的卡尔曼滤波器**只能处理线性方程。**扩展卡尔曼滤波器**（EKF）和**无损卡尔曼滤波器**都允许你使用非线性方程；EKF和UKF的区别在于它们如何处理非线性方程： 扩展卡尔曼滤波器使用雅可比矩阵来线性化非线性函数；而无损卡尔曼滤波器则不需要线性化非线性函数，相反，无损卡尔曼滤波器从高斯分布中获取代表点。
 
 
 
