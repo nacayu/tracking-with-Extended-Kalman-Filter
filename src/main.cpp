@@ -142,7 +142,12 @@ int main(int argc, char* argv[]) {
     fusionEKF.ProcessMeasurement(measurement_pack_list[k]);
 
     // 格式化输出所有预测结果
-
+    if(measurement_pack_list[k].sensor_type_ == MeasurementPackage::RADAR){
+      out_file_ << "radar" << "\t";
+    }else{
+      out_file_ << "lidar" << "\t";
+    }
+    
     out_file_ << fusionEKF.ekf_.x_(0) << "\t";
     out_file_ << fusionEKF.ekf_.x_(1) << "\t";
     out_file_ << fusionEKF.ekf_.x_(2) << "\t";

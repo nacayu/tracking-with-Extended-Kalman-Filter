@@ -44,9 +44,6 @@ to be tracked, and then apply the Extended Kalman Filter to track the objects ba
 
 ### 2. My project files
 
-(Note: the hyperlinks **only** works if you are on the homepage of this GitHub reop,
-and if you are viewing it in "github.io" you can be redirected by clicking the **View the Project on GitHub** on the top)
-
 * [CMakeLists.txt](CMakeLists.txt) is the cmake file.
 
 * [data](data) folder contains test lidar and radar measurements.
@@ -58,6 +55,8 @@ and if you are viewing it in "github.io" you can be redirected by clicking the *
 * [include](include) folder contains head file
 
 * [output](output) folder contains your results
+
+* [visualization script](output/visualization.ipynb) visualize our project
 
 
 ### 3. Code Style
@@ -72,8 +71,9 @@ and if you are viewing it in "github.io" you can be redirected by clicking the *
 3. Compile: `cmake .. && make` 
    * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
 4. Run it by either of the following commands: 
-   * `./ExtendedKF  ../data/obj_pose-laser-radar-synthetic-input.txt ./output.txt`
-   * `./ExtendedKF  ../data/sample-laser-radar-measurement-data-1.txt ./output.txt`
+   * `cd /path/to/build`
+   * `./ExtendedKF  ../data/obj_pose-laser-radar-synthetic-input.txt ../output/output.txt`
+   * `./ExtendedKF  ../data/sample-laser-radar-measurement-data-1.txt ../output/output.txt`
 
 ## System details
 
