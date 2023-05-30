@@ -1,0 +1,26 @@
+# Ignore build output
+build/
+bin/
+
+# Ignore VS Code related files
+.vscode/
+
+# Ignore generated files
+*.exe
+*.o
+*.out
+
+# Ignore IDE project files
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# Ignore CMake build directory
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Ignore other miscellaneous files
+*.log
+*.tmp
